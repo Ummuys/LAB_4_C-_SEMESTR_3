@@ -84,10 +84,10 @@ void test_kmp_algorithm() {
 void test_z_algorithm() {
 	system("cls");
 	cout << "Введите строку для выполнения Z функции:\n\n>>";
-	string str = "abacabadabacaba";
-	//cin >> str;
+	string str;// = "All were white men.The average age was forty - two.Many of these men had been leaders during the American Revolution.About three - fourths of them had served in Congress.Most were leaders in their states.Some were rich, but most were not.None were poor.There were no native Americans among the delegates.There were no women.There were no black men or slaves.Poor farmers were not present either.George Washington, James Madison, and Benjamin Franklin were the three important delegates to the Convention.George Washington came from Virginia.He was probably the most respected man in the country.As the commander - in - chief of the American army during the Revolution, he was  great hero to most people.Then he had retired to his plantation and would have liked to remain there.However, his friends told him he should attend the convention.They said his support was necessary to get a new constitution accepted by the people.Since Washington thought a stronger national government was necessary, he came to Philadelphia";
+	cin >> str;
 	system("cls");
-	z_program(str);
+	z_program(str, false);
 
 	/*cout << "Поиск подстроки в строке: \n";*/
 	
@@ -109,7 +109,11 @@ void test_ah_corasick() {
 	string substr = "hello";*/
 	string str = "allwerewhitementheaverageagewasfortytwomanyofthesemenhadbeenleadersduringtheamericanrevolutionaboutthreefourthsofthemhadservedincongressmostwereleadersintheirstatessomewererichbutmostwerenotnonewerepoortherewerenonativeamericansamongthedelegatestherewerenowomentherewerenoblackmenorslavespoorfarmerswerenotpresenteithergeorgewashingtonjamesmadisonandbenjaminfranklinwerethethreeimportantdelegatestotheconventiongeorgewashingtoncamefromvirginiahewasprobablythemostrespectedmaninthecountryasthecommanderinchiefoftheamericanarmyduringtherevolutionhewasgreatherotomostpeoplethenhehadretiredtohisplantationandwouldhavelikedtoremaintherehoweverhisfriendstoldhimheshouldattendtheconventiontheysaidhissupportwasnecessarytogetanewconstitutionacceptedbythepeoplesincewashingtonthoughtastrongernationalgovernmentwasnecessaryhecametophiladelphia";
 	string substr = "philadelphia";
+	auto start_time = chrono::steady_clock::now();
 	int ans = Trie.find_substr(str, substr);
+	auto end_time = chrono::steady_clock::now();
+	auto elapsed_ns = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time);
+	cout << "Rabin-Karp algorithm ->" << elapsed_ns.count() << " ns\n";
 	for (int i = ans; i < ans + substr.size(); i++) {
 		cout << str[i];
 	}
